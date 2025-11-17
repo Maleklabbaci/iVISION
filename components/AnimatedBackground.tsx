@@ -12,16 +12,21 @@ const AnimatedBackground: React.FC = () => {
 
         let animationFrameId: number;
         let particles: Particle[];
+        
+        const mouse = {
+            x: undefined as number | undefined,
+            y: undefined as number | undefined,
+        };
 
         const options = {
             particleColor: "rgba(141, 150, 160, 0.5)",
-            lineColor: "rgba(56, 189, 248, 0.1)",
             particleAmount: 50,
             defaultRadius: 2,
             variantRadius: 2,
             defaultSpeed: 0.5,
             variantSpeed: 0.5,
             linkRadius: 150,
+            mouseRadius: 100, // Radius around mouse for interaction
         };
 
         let w = canvas.width = window.innerWidth;
@@ -30,6 +35,7 @@ const AnimatedBackground: React.FC = () => {
         class Particle {
             x: number;
             y: number;
+            baseRadius: number;
             radius: number;
             speed: number;
             directionAngle: number;
@@ -39,7 +45,8 @@ const AnimatedBackground: React.FC = () => {
             constructor() {
                 this.x = Math.random() * w;
                 this.y = Math.random() * h;
-                this.radius = options.defaultRadius + Math.random() * options.variantRadius;
+                this.baseRadius = options.defaultRadius + Math.random() * options.variantRadius;
+                this.radius = this.baseRadius;
                 this.speed = options.defaultSpeed + Math.random() * options.variantSpeed;
                 this.directionAngle = Math.floor(Math.random() * 360);
                 this.dx = Math.cos(this.directionAngle) * this.speed;
@@ -84,7 +91,14 @@ const AnimatedBackground: React.FC = () => {
                     const opacity = 1 - distance / options.linkRadius;
                     if (opacity > 0) {
                         ctx.lineWidth = 0.5;
-                        ctx.strokeStyle = `rgba(56, 189, 248, ${opacity * 0.2})`;
+                        
+                        let distanceToMouse = Infinity;
+                        if(mouse.x !== undefined && mouse.y !== undefined) {
+                            distanceToMouse = checkDistance(particles[i].x, particles[i].y, mouse.x, mouse.y);
+                        }
+                        
+                        const alpha = (distanceToMouse < options.mouseRadius) ? opacity * 0.8 : opacity * 0.2;
+                        ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
@@ -94,21 +108,53 @@ const AnimatedBackground: React.FC = () => {
                 }
             }
         }
-
-        const setup = () => {
-            createParticles();
-            loop();
+        
+        const drawGrid = () => {
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+            ctx.lineWidth = 0.5;
+            const gridSize = 40;
+            for (let x = 0; x < w; x += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, h);
+                ctx.stroke();
+            }
+            for (let y = 0; y < h; y += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(w, y);
+                ctx.stroke();
+            }
         };
 
         const loop = () => {
             ctx.clearRect(0, 0, w, h);
+            drawGrid();
             particles.forEach(p => {
                 p.update();
+                if (mouse.x !== undefined && mouse.y !== undefined) {
+                    const distanceToMouse = checkDistance(p.x, p.y, mouse.x, mouse.y);
+                    if(distanceToMouse < options.mouseRadius) {
+                        p.radius = p.baseRadius + 2;
+                    } else {
+                        p.radius = p.baseRadius;
+                    }
+                }
                 p.draw();
             });
             linkParticles();
             animationFrameId = window.requestAnimationFrame(loop);
         };
+        
+        const handleMouseMove = (e: MouseEvent) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        };
+
+        const handleMouseOut = () => {
+            mouse.x = undefined;
+            mouse.y = undefined;
+        }
         
         const handleResize = () => {
             w = canvas.width = window.innerWidth;
@@ -117,11 +163,17 @@ const AnimatedBackground: React.FC = () => {
         };
 
         window.addEventListener('resize', handleResize);
-        setup();
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mouseout', handleMouseOut);
+        
+        createParticles();
+        loop();
 
         return () => {
             window.cancelAnimationFrame(animationFrameId);
             window.removeEventListener('resize', handleResize);
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mouseout', handleMouseOut);
         };
     }, []);
 
