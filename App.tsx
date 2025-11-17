@@ -10,9 +10,21 @@ import Footer from './components/Footer';
 import LiveChat from './components/LiveChat';
 import LanguageSelector from './components/LanguageSelector';
 import { translations, Language } from './lib/translations';
-import AnimatedBackground from './components/AnimatedBackground';
 import QuoteForm from './components/QuoteForm';
 import ClientLogos from './components/ClientLogos';
+
+const StaticBackground: React.FC = () => (
+  <div className="fixed top-0 left-0 w-full h-full z-[-1] bg-brand-dark">
+    <div 
+      className="absolute inset-0 z-0" 
+      style={{
+        backgroundImage: 'radial-gradient(circle at 25% 25%, rgba(56, 189, 248, 0.1) 0%, transparent 40%), radial-gradient(circle at 75% 75%, rgba(56, 189, 248, 0.1) 0%, transparent 40%)',
+        backgroundSize: '100% 100%',
+      }}
+    ></div>
+  </div>
+);
+
 
 const App: React.FC = () => {
   const [language, setLanguage] = useState<Language | null>(null);
@@ -40,14 +52,14 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen relative">
-      <AnimatedBackground />
+      <StaticBackground />
       
       {!language || !t ? (
-        <div key="lang-selector" className="min-h-screen flex items-center justify-center p-6">
+        <div key="lang-selector" className="min-h-screen flex items-center justify-center p-6 bg-brand-dark/30 backdrop-blur-xl">
             <LanguageSelector onSelectLanguage={handleSelectLanguage} />
         </div>
       ) : (
-        <div key="main-content" className="relative z-10 flex flex-col min-h-screen animate-blur-in">
+        <div key="main-content" className="relative z-10 flex flex-col min-h-screen animate-blur-in bg-brand-dark/30 backdrop-blur-xl">
           <Header translations={t.header} onQuoteClick={handleOpenQuoteForm} />
           <main className="flex-grow">
             <Hero translations={t.hero} onQuoteClick={handleOpenQuoteForm} />
