@@ -73,21 +73,102 @@ const textContent = {
       en: 'Results that speak for themselves.',
       ar: 'نتائج تتحدث عن نفسها.',
     },
-    stats: {
+    projects: {
       fr: [
-        { value: '+350%', label: 'Augmentation du ROI', description: '' },
-        { value: '+200%', label: 'Taux de Conversion', description: '' },
-        { value: 'Top 3', label: 'Classement Google', description: '' },
+        { 
+          client: 'Client E-commerce Mode', 
+          title: 'Campagne Meta Ads Explosive',
+          image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800&auto=format&fit=crop',
+          results: [
+            { value: '+350%', label: 'Augmentation du ROI' },
+            { value: '+200%', label: 'Taux de Conversion' },
+          ],
+          cta: 'Discuter de votre projet'
+        },
+        { 
+          client: 'Marque de Cosmétiques', 
+          title: 'Lancement de Produit Viral',
+          image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=800&auto=format&fit=crop',
+          results: [
+            { value: '+5M', label: 'Impressions en 1 mois' },
+            { value: 'Top 1', label: 'Tendance sur les réseaux' },
+          ],
+          cta: 'Discuter de votre projet'
+        },
+        { 
+          client: 'Startup Tech', 
+          title: 'Création Visuelle',
+          image: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92b34?q=80&w=800&auto=format&fit=crop',
+          results: [
+            { value: '+400%', label: 'Trafic Organique' },
+            { value: 'Top 3', label: 'Classement Google' },
+          ],
+          cta: 'Discuter de votre projet'
+        },
       ],
       en: [
-        { value: '+350%', label: 'ROI Increase', description: '' },
-        { value: '+200%', label: 'Conversion Rate', description: '' },
-        { value: 'Top 3', label: 'Google Ranking', description: '' },
+        { 
+          client: 'Fashion E-commerce Client', 
+          title: 'Explosive Meta Ads Campaign',
+          image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800&auto=format&fit=crop',
+          results: [
+            { value: '+350%', label: 'ROI Increase' },
+            { value: '+200%', label: 'Conversion Rate' },
+          ],
+          cta: 'Discuss your project'
+        },
+        { 
+          client: 'Cosmetics Brand', 
+          title: 'Viral Product Launch',
+          image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=800&auto=format&fit=crop',
+          results: [
+            { value: '+5M', label: 'Impressions in 1 month' },
+            { value: 'Top 1', label: 'Trending on social media' },
+          ],
+          cta: 'Discuss your project'
+        },
+        { 
+          client: 'Tech Startup', 
+          title: 'Visual Creation',
+          image: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92b34?q=80&w=800&auto=format&fit=crop',
+          results: [
+            { value: '+400%', label: 'Organic Traffic' },
+            { value: 'Top 3', label: 'Google Ranking' },
+          ],
+          cta: 'Discuss your project'
+        },
       ],
       ar: [
-        { value: '+350%', label: 'زيادة في عائد الاستثمار', description: '' },
-        { value: '+200%', label: 'معدل التحويل', description: '' },
-        { value: 'أعلى 3', label: 'ترتيب جوجل', description: '' },
+        { 
+          client: 'عميل في تجارة الأزياء', 
+          title: 'حملة إعلانات ميتا ناجحة',
+          image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800&auto=format&fit=crop',
+          results: [
+            { value: '+350%', label: 'زيادة في عائد الاستثمار' },
+            { value: '+200%', label: 'معدل التحويل' },
+          ],
+          cta: 'ناقش مشروعك'
+        },
+        { 
+          client: 'علامة تجارية لمستحضرات التجميل', 
+          title: 'إطلاق منتج واسع الانتشار',
+          image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=800&auto=format&fit=crop',
+          results: [
+            { value: '+5 مليون', label: 'ظهور في شهر واحد' },
+            { value: 'المرتبة الأولى', label: 'في الترند على الشبكات' },
+          ],
+          cta: 'ناقش مشروعك'
+        },
+        { 
+          client: 'شركة تقنية ناشئة', 
+          title: 'إنشاء بصري',
+          image: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92b34?q=80&w=800&auto=format&fit=crop',
+          results: [
+            { value: '+400%', label: 'زيارات عضوية' },
+            { value: 'أعلى 3', label: 'ترتيب جوجل' },
+          ],
+          cta: 'ناقش مشروعك'
+        },
       ],
     },
     testimonial: {
@@ -154,6 +235,8 @@ const textContent = {
         en: 'Quick quote request',
         ar: 'طلب عرض سعر سريع',
       },
+      yourInfoTitle: { fr: 'Vos informations', en: 'Your Information', ar: 'معلوماتك الشخصية' },
+      projectInfoTitle: { fr: 'Informations sur le projet', en: 'Project Information', ar: 'معلومات المشروع' },
       nameLabel: { fr: 'Nom complet', en: 'Full Name', ar: 'الاسم الكامل' },
       companyNameLabel: { fr: "Nom de l'entreprise", en: 'Company Name', ar: 'اسم الشركة' },
       emailLabel: { fr: 'Adresse e-mail', en: 'Email Address', ar: 'البريد الإلكتروني' },
@@ -242,7 +325,7 @@ const processTranslations = (lang: Language) => ({
     portfolio: {
         title: textContent.portfolio.title[lang],
         subtitle: textContent.portfolio.subtitle[lang],
-        stats: textContent.portfolio.stats[lang],
+        projects: textContent.portfolio.projects[lang],
         testimonial: {
             quote: textContent.portfolio.testimonial.quote[lang],
             author: textContent.portfolio.testimonial.author[lang],
@@ -259,6 +342,8 @@ const processTranslations = (lang: Language) => ({
         subtitle: textContent.contact.subtitle[lang],
         form: {
             title: textContent.contact.form.title[lang],
+            yourInfoTitle: textContent.contact.form.yourInfoTitle[lang],
+            projectInfoTitle: textContent.contact.form.projectInfoTitle[lang],
             nameLabel: textContent.contact.form.nameLabel[lang],
             companyNameLabel: textContent.contact.form.companyNameLabel[lang],
             emailLabel: textContent.contact.form.emailLabel[lang],

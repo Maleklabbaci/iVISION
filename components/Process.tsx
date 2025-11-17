@@ -11,7 +11,7 @@ interface ProcessStepProps {
 }
 
 const ProcessStep: React.FC<ProcessStepProps> = ({ step }) => (
-    <div className="bg-brand-dark/50 border border-brand-border p-8 rounded-lg text-center backdrop-blur-lg">
+    <div className="bg-brand-dark/50 border border-brand-border p-8 rounded-lg text-center">
         <div className="text-4xl font-bold text-brand-accent mb-4">{step.step}</div>
         <h3 className="text-xl font-bold text-brand-light mb-2">{step.title}</h3>
         <p className="text-brand-gray">{step.description}</p>

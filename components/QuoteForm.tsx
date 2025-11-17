@@ -23,6 +23,8 @@ interface ContactTranslations {
         cta: string;
         successTitle: string;
         successMessage: string;
+        yourInfoTitle: string;
+        projectInfoTitle: string;
     };
 }
 
@@ -46,7 +48,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ label, hint, name, option
     <label className="block text-sm font-medium text-brand-gray mb-2">
       {label} <span className="text-xs opacity-75">{hint}</span>
     </label>
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+    <div className="grid grid-cols-2 gap-2">
       {options.map((option) => {
         const isSelected = selectedValues.includes(option);
         return (
@@ -83,7 +85,7 @@ interface RadioBoxGroupProps {
 const RadioBoxGroup: React.FC<RadioBoxGroupProps> = ({ label, name, options, selectedValue, onChange, required }) => (
   <div>
     <label className="block text-sm font-medium text-brand-gray mb-2">{label}</label>
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+    <div className="grid grid-cols-2 gap-2">
       {options.map((option) => (
         <label key={option} className={`cursor-pointer text-center p-3 border rounded-md transition-all duration-200 text-sm ${
           selectedValue === option
@@ -146,11 +148,11 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ translations, onClose }) => {
 
   return (
     <div 
-        className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-6"
+        className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4"
         onClick={onClose}
     >
       <div
-        className="relative bg-brand-dark/70 border border-brand-border text-brand-light p-8 rounded-lg max-w-3xl w-full animate-scale-in backdrop-blur-xl"
+        className="relative bg-brand-dark/70 backdrop-blur-sm border border-brand-border text-brand-light p-8 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         <button onClick={onClose} className="absolute top-4 right-4 text-brand-gray hover:text-brand-light text-2xl z-10">&times;</button>
@@ -167,50 +169,67 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ translations, onClose }) => {
             </div>
         ) : (
             <>
-                <h3 className="text-2xl font-bold mb-6 text-center">{translations.form.title}</h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-brand-gray mb-1">{translations.form.nameLabel}</label>
-                        <input id="name" type="text" name="name" placeholder={translations.form.namePlaceholder} value={formData.name} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" required />
+                <h3 className="text-2xl font-bold mb-8 text-center">{translations.form.title}</h3>
+                <form onSubmit={handleSubmit}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+                    {/* Left Column: User Info */}
+                    <div className="space-y-5">
+                        <h4 className="text-lg font-semibold text-brand-light border-b border-brand-border pb-2">
+                            {translations.form.yourInfoTitle}
+                        </h4>
+                        <div>
+                            <label htmlFor="name" className="block text-sm font-medium text-brand-gray mb-1">{translations.form.nameLabel}</label>
+                            <input id="name" type="text" name="name" placeholder={translations.form.namePlaceholder} value={formData.name} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" required />
+                        </div>
+                        <div>
+                            <label htmlFor="companyName" className="block text-sm font-medium text-brand-gray mb-1">{translations.form.companyNameLabel}</label>
+                            <input id="companyName" type="text" name="companyName" placeholder={translations.form.companyNamePlaceholder} value={formData.companyName} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" />
+                        </div>
+                        <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-brand-gray mb-1">{translations.form.emailLabel}</label>
+                            <input id="email" type="email" name="email" placeholder={translations.form.emailPlaceholder} value={formData.email} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" required />
+                        </div>
+                        <div>
+                            <label htmlFor="phone" className="block text-sm font-medium text-brand-gray mb-1">{translations.form.phoneLabel}</label>
+                            <input id="phone" type="tel" name="phone" placeholder={translations.form.phonePlaceholder} value={formData.phone} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" />
+                        </div>
                     </div>
-                    <div>
-                        <label htmlFor="companyName" className="block text-sm font-medium text-brand-gray mb-1">{translations.form.companyNameLabel}</label>
-                        <input id="companyName" type="text" name="companyName" placeholder={translations.form.companyNamePlaceholder} value={formData.companyName} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" />
+
+                    {/* Right Column: Project Info */}
+                    <div className="space-y-5">
+                        <h4 className="text-lg font-semibold text-brand-light border-b border-brand-border pb-2">
+                           {translations.form.projectInfoTitle}
+                        </h4>
+                        <CheckboxGroup
+                          label={translations.form.serviceLabel}
+                          hint={translations.form.serviceLabelHint}
+                          name="services"
+                          options={translations.form.serviceOptions}
+                          selectedValues={formData.services}
+                          onChange={handleServiceChange}
+                          required
+                        />
+                        <RadioBoxGroup
+                          label={translations.form.budgetLabel}
+                          name="budget"
+                          options={translations.form.budgetOptions}
+                          selectedValue={formData.budget}
+                          onChange={handleChange}
+                          required
+                        />
                     </div>
-                    <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-brand-gray mb-1">{translations.form.emailLabel}</label>
-                        <input id="email" type="email" name="email" placeholder={translations.form.emailPlaceholder} value={formData.email} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" required />
+                     {/* Project Description - Full Width */}
+                    <div className="md:col-span-2">
+                        <label htmlFor="project" className="block text-sm font-medium text-brand-gray mb-1">{translations.form.projectLabel}</label>
+                        <textarea id="project" name="project" placeholder={translations.form.projectPlaceholder} value={formData.project} onChange={handleChange} rows={4} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" required></textarea>
                     </div>
-                    <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-brand-gray mb-1">{translations.form.phoneLabel}</label>
-                        <input id="phone" type="tel" name="phone" placeholder={translations.form.phonePlaceholder} value={formData.phone} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" />
-                    </div>
+
                   </div>
-                    <CheckboxGroup
-                      label={translations.form.serviceLabel}
-                      hint={translations.form.serviceLabelHint}
-                      name="services"
-                      options={translations.form.serviceOptions}
-                      selectedValues={formData.services}
-                      onChange={handleServiceChange}
-                      required
-                    />
-                    <RadioBoxGroup
-                      label={translations.form.budgetLabel}
-                      name="budget"
-                      options={translations.form.budgetOptions}
-                      selectedValue={formData.budget}
-                      onChange={handleChange}
-                      required
-                    />
-                  <div>
-                    <label htmlFor="project" className="block text-sm font-medium text-brand-gray mb-1">{translations.form.projectLabel}</label>
-                    <textarea id="project" name="project" placeholder={translations.form.projectPlaceholder} value={formData.project} onChange={handleChange} rows={4} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" required></textarea>
+                  <div className="mt-8 text-center">
+                    <button type="submit" className="w-full md:w-auto bg-brand-accent text-brand-dark font-bold py-3 px-12 rounded-md hover:opacity-90 transition-opacity duration-300">
+                        {translations.form.cta}
+                    </button>
                   </div>
-                  <button type="submit" className="w-full bg-brand-accent text-brand-dark font-bold py-3 px-6 rounded-md hover:opacity-90 transition-opacity duration-300">
-                    {translations.form.cta}
-                  </button>
                 </form>
             </>
         )}

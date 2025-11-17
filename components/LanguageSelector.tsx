@@ -7,7 +7,7 @@ interface LanguageSelectorProps {
 
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage }) => {
   return (
-    <div className="text-center bg-brand-dark/50 border border-brand-border rounded-lg p-8 md:p-12 shadow-2xl animate-blur-in backdrop-blur-xl">
+    <div className="text-center bg-brand-dark/50 border border-brand-border rounded-lg p-8 md:p-12 shadow-2xl animate-blur-in">
       <h1 className="text-3xl md:text-4xl font-bold mb-2">
         i<span className="text-brand-accent">V</span>ISION
       </h1>
