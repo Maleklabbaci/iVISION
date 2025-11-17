@@ -1,0 +1,83 @@
+import React, { useState, useEffect } from 'react';
+
+const Logo: React.FC = () => (
+  <a href="#home" className="text-2xl md:text-3xl font-bold text-brand-light tracking-tight">
+    i<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent-start to-brand-accent-end">V</span>ISION
+  </a>
+);
+
+interface NavLinksProps {
+  className?: string;
+  onItemClick?: () => void;
+  links: string[];
+}
+
+const NavLinks: React.FC<NavLinksProps> = ({ className, onItemClick, links }) => {
+  const staticLinks = ['accueil', 'services', 'portfolio', 'blog', 'a-propos', 'contact'];
+  return (
+    <nav className={className}>
+      {links.map((link, index) => (
+        <a 
+          key={link} 
+          href={`#${staticLinks[index]}`} 
+          onClick={onItemClick}
+          className="block py-2 px-4 text-brand-light hover:text-brand-accent-end transition-colors duration-300"
+        >
+          {link}
+        </a>
+      ))}
+    </nav>
+  );
+};
+
+interface HeaderProps {
+    translations: {
+        links: string[];
+        cta: string;
+    }
+}
+
+const Header: React.FC<HeaderProps> = ({ translations }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-brand-dark/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'}`}>
+      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        <Logo />
+        <div className="hidden md:flex items-center space-x-6">
+          <NavLinks className="flex space-x-2" links={translations.links} />
+          <a href="#contact" className="bg-gradient-to-r from-brand-accent-start to-brand-accent-end text-white font-semibold py-2 px-6 rounded-full hover:opacity-90 transition-opacity duration-300 transform hover:scale-105">
+            {translations.cta}
+          </a>
+        </div>
+        <div className="md:hidden">
+          <button onClick={() => setIsOpen(!isOpen)} className="text-white focus:outline-none z-50">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              {isOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+              )}
+            </svg>
+          </button>
+        </div>
+      </div>
+      {isOpen && (
+        <div className="md:hidden bg-brand-dark/95 backdrop-blur-sm pb-4 absolute top-full left-0 right-0">
+          <NavLinks className="text-center" onItemClick={() => setIsOpen(false)} links={translations.links}/>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Header;
