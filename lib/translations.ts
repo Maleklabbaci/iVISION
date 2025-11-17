@@ -30,6 +30,38 @@ const textContent = {
       ar: 'اطلب استشارة مجانية',
     },
   },
+  clientLogos: {
+    title: {
+      fr: 'Pourquoi Nous Choisir ?',
+      en: 'Why Choose Us?',
+      ar: 'لماذا تختارنا؟',
+    },
+    subtitle: {
+      fr: 'Nous ne sommes pas juste une autre agence. Nous sommes votre équipe dédiée à la croissance.',
+      en: 'We are not just another agency. We are your dedicated growth team.',
+      ar: 'نحن لسنا مجرد وكالة أخرى. نحن فريقك المخصص للنمو.',
+    },
+    points: {
+      fr: [
+        { title: 'Expertise Ciblée', description: 'Nous vivons et respirons l\'e-commerce. Notre spécialisation nous permet de créer des stratégies qui frappent juste.' },
+        { title: 'Approche Partenaire', description: 'Votre succès est notre succès. Nous nous intégrons à votre équipe pour atteindre des objectifs communs.' },
+        { title: 'Stratégie Basée sur la Data', description: 'Chaque décision est guidée par des données concrètes, assurant une optimisation continue et un ROI maximal.' },
+        { title: 'Résultats Concrets', description: 'Nous nous concentrons sur des métriques qui comptent vraiment : augmentation des ventes et croissance durable.' },
+      ],
+      en: [
+        { title: 'Targeted Expertise', description: 'We live and breathe e-commerce. Our specialization allows us to create strategies that hit the mark.' },
+        { title: 'Partnership Approach', description: 'Your success is our success. We integrate with your team to achieve common goals.' },
+        { title: 'Data-Driven Strategy', description: 'Every decision is guided by concrete data, ensuring continuous optimization and maximum ROI.' },
+        { title: 'Tangible Results', description: 'We focus on metrics that truly matter: increased sales and sustainable growth.' },
+      ],
+      ar: [
+        { title: 'خبرة مستهدفة', description: 'نحن نعيش ونتنفس التجارة الإلكترونية. تخصصنا يسمح لنا بإنشاء استراتيجيات تصيب الهدف.' },
+        { title: 'نهج الشراكة', description: 'نجاحك هو نجاحنا. نحن نندمج مع فريقك لتحقيق الأهداف المشتركة.' },
+        { title: 'استراتيجية تعتمد على البيانات', description: 'كل قرار يسترشد ببيانات ملموسة، مما يضمن التحسين المستمر وأقصى عائد على الاستثمار.' },
+        { title: 'نتائج ملموسة', description: 'نحن نركز على المقاييس التي تهم حقًا: زيادة المبيعات والنمو المستدام.' },
+      ]
+    }
+  },
   services: {
     title: {
       fr: 'Nos Services',
@@ -98,7 +130,7 @@ const textContent = {
         { 
           client: 'Startup Tech', 
           title: 'Création Visuelle',
-          image: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92b34?q=80&w=800&auto=format&fit=crop',
+          image: 'https://images.unsplash.com/photo-1558655146-364adaf1fcc9?q=80&w=800&auto=format&fit=crop',
           results: [
             { value: '+400%', label: 'Trafic Organique' },
             { value: 'Top 3', label: 'Classement Google' },
@@ -130,7 +162,7 @@ const textContent = {
         { 
           client: 'Tech Startup', 
           title: 'Visual Creation',
-          image: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92b34?q=80&w=800&auto=format&fit=crop',
+          image: 'https://images.unsplash.com/photo-1558655146-364adaf1fcc9?q=80&w=800&auto=format&fit=crop',
           results: [
             { value: '+400%', label: 'Organic Traffic' },
             { value: 'Top 3', label: 'Google Ranking' },
@@ -162,7 +194,7 @@ const textContent = {
         { 
           client: 'شركة تقنية ناشئة', 
           title: 'إنشاء بصري',
-          image: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92b34?q=80&w=800&auto=format&fit=crop',
+          image: 'https://images.unsplash.com/photo-1558655146-364adaf1fcc9?q=80&w=800&auto=format&fit=crop',
           results: [
             { value: '+400%', label: 'زيارات عضوية' },
             { value: 'أعلى 3', label: 'ترتيب جوجل' },
@@ -217,6 +249,38 @@ const textContent = {
         { step: '03', title: 'التحليل والتوسع', description: 'تقارير مفصلة وتحديد روافع النمو للانتقال إلى المستوى التالي.' },
       ],
     },
+  },
+  faq: {
+    title: {
+      fr: 'Questions Fréquemment Posées',
+      en: 'Frequently Asked Questions',
+      ar: 'الأسئلة الشائعة',
+    },
+    subtitle: {
+      fr: 'Trouvez ici les réponses à vos questions les plus courantes.',
+      en: 'Find answers to your most common questions here.',
+      ar: 'تجد هنا إجابات على أسئلتك الأكثر شيوعًا.',
+    },
+    faqs: {
+      fr: [
+        { question: 'Quels types d\'entreprises aidez-vous ?', answer: 'Nous nous spécialisons dans l\'aide aux entreprises e-commerce, des startups aux marques établies, pour augmenter leur visibilité en ligne et leurs ventes.' },
+        { question: 'Combien de temps faut-il pour voir des résultats ?', answer: 'Les résultats peuvent varier, mais vous pouvez généralement vous attendre à voir des améliorations significatives dans les métriques clés en 3 à 6 mois, en fonction de la stratégie et des services choisis.' },
+        { question: 'Comment mesurez-vous le succès d\'une campagne ?', answer: 'Nous mesurons le succès à l\'aide d\'indicateurs de performance clés (KPI) tels que le retour sur investissement publicitaire (ROAS), le coût par acquisition (CPA), le taux de conversion et la croissance globale du trafic et des revenus.' },
+        { question: 'Proposez-vous des contrats à long terme ?', answer: 'Nous proposons des options flexibles, y compris des projets uniques et des contrats de service mensuels. Notre objectif est de construire un partenariat qui correspond à vos besoins et à vos objectifs.' },
+      ],
+      en: [
+        { question: 'What types of businesses do you help?', answer: 'We specialize in helping e-commerce businesses, from startups to established brands, increase their online visibility and sales.' },
+        { question: 'How long does it take to see results?', answer: 'Results can vary, but you can typically expect to see significant improvements in key metrics within 3 to 6 months, depending on the strategy and services chosen.' },
+        { question: 'How do you measure the success of a campaign?', answer: 'We measure success using key performance indicators (KPIs) such as Return On Ad Spend (ROAS), Cost Per Acquisition (CPA), conversion rate, and overall growth in traffic and revenue.' },
+        { question: 'Do you offer long-term contracts?', answer: 'We offer flexible options, including one-time projects and monthly retainers. Our goal is to build a partnership that fits your needs and objectives.' },
+      ],
+      ar: [
+        { question: 'ما أنواع الشركات التي تساعدونها؟', answer: 'نحن متخصصون في مساعدة شركات التجارة الإلكترونية، من الشركات الناشئة إلى العلامات التجارية الراسخة، على زيادة ظهورها ومبيعاتها عبر الإنترنت.' },
+        { question: 'كم من الوقت يستغرق رؤية النتائج؟', answer: 'يمكن أن تختلف النتائج، ولكن يمكنك عادةً توقع رؤية تحسينات كبيرة في المقاييس الرئيسية في غضون 3 إلى 6 أشهر، اعتمادًا على الاستراتيجية والخدمات المختارة.' },
+        { question: 'كيف تقيسون نجاح الحملة؟', answer: 'نقيس النجاح باستخدام مؤشرات الأداء الرئيسية (KPIs) مثل العائد على الإنفاق الإعلاني (ROAS)، وتكلفة الاستحواذ (CPA)، ومعدل التحويل، والنمو الإجمالي في حركة المرور والإيرادات.' },
+        { question: 'هل تقدمون عقودًا طويلة الأجل؟', answer: 'نحن نقدم خيارات مرنة، بما في ذلك المشاريع لمرة واحدة والعقود الشهرية. هدفنا هو بناء شراكة تناسب احتياجاتك وأهدافك.' },
+      ],
+    }
   },
   contact: {
     title: {
@@ -317,6 +381,11 @@ const processTranslations = (lang: Language) => ({
         subtitle: textContent.hero.subtitle[lang],
         cta: textContent.hero.cta[lang],
     },
+    clientLogos: {
+        title: textContent.clientLogos.title[lang],
+        subtitle: textContent.clientLogos.subtitle[lang],
+        points: textContent.clientLogos.points[lang],
+    },
     services: {
         title: textContent.services.title[lang],
         subtitle: textContent.services.subtitle[lang],
@@ -336,6 +405,11 @@ const processTranslations = (lang: Language) => ({
         title: textContent.process.title[lang],
         subtitle: textContent.process.subtitle[lang],
         steps: textContent.process.steps[lang],
+    },
+    faq: {
+        title: textContent.faq.title[lang],
+        subtitle: textContent.faq.subtitle[lang],
+        faqs: textContent.faq.faqs[lang],
     },
     contact: {
         title: textContent.contact.title[lang],

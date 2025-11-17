@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
 import Process from './components/Process';
+import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LiveChat from './components/LiveChat';
@@ -11,6 +12,7 @@ import LanguageSelector from './components/LanguageSelector';
 import { translations, Language } from './lib/translations';
 import AnimatedBackground from './components/AnimatedBackground';
 import QuoteForm from './components/QuoteForm';
+import ClientLogos from './components/ClientLogos';
 
 const App: React.FC = () => {
   const [language, setLanguage] = useState<Language | null>(null);
@@ -49,9 +51,11 @@ const App: React.FC = () => {
           <Header translations={t.header} onQuoteClick={handleOpenQuoteForm} />
           <main className="flex-grow">
             <Hero translations={t.hero} onQuoteClick={handleOpenQuoteForm} />
+            <ClientLogos translations={t.clientLogos} />
             <Services translations={t.services} />
-            <Portfolio translations={t.portfolio} />
+            <Portfolio translations={t.portfolio} onQuoteClick={handleOpenQuoteForm} />
             <Process translations={t.process} />
+            <FAQ translations={t.faq} />
             <Contact translations={t.contact} />
           </main>
           <LiveChat translations={t.liveChat} />

@@ -23,7 +23,8 @@ interface PortfolioProps {
       author: string;
       position: string;
     }
-  }
+  },
+  onQuoteClick: () => void;
 }
 
 // Icons for stats
@@ -33,7 +34,7 @@ const IconTrophy = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 
 
 const statIcons = [<IconTrendingUp />, <IconTarget />, <IconTrophy />];
 
-const Portfolio: React.FC<PortfolioProps> = ({ translations }) => {
+const Portfolio: React.FC<PortfolioProps> = ({ translations, onQuoteClick }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -91,9 +92,9 @@ const Portfolio: React.FC<PortfolioProps> = ({ translations }) => {
                         </div>
                     ))}
                 </div>
-                <a href="#contact" className="font-semibold text-brand-accent hover:underline">
+                <button type="button" onClick={onQuoteClick} className="font-semibold text-brand-accent hover:underline">
                   {project.cta} &rarr;
-                </a>
+                </button>
               </div>
             </div>
           ))}
