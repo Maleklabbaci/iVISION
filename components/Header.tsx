@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const Logo: React.FC = () => (
   <a href="#home" className="text-2xl md:text-3xl font-bold text-brand-light tracking-tight">
-    i<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent-start to-brand-accent-end">V</span>ISION
+    i<span className="text-brand-accent">V</span>ISION
   </a>
 );
 
@@ -13,7 +13,7 @@ interface NavLinksProps {
 }
 
 const NavLinks: React.FC<NavLinksProps> = ({ className, onItemClick, links }) => {
-  const staticLinks = ['accueil', 'services', 'portfolio', 'blog', 'a-propos', 'contact'];
+  const staticLinks = ['accueil', 'services', 'portfolio', 'a-propos', 'contact'];
   return (
     <nav className={className}>
       {links.map((link, index) => (
@@ -21,7 +21,7 @@ const NavLinks: React.FC<NavLinksProps> = ({ className, onItemClick, links }) =>
           key={link} 
           href={`#${staticLinks[index]}`} 
           onClick={onItemClick}
-          className="block py-2 px-4 text-brand-light hover:text-brand-accent-end transition-colors duration-300"
+          className="block py-2 px-4 text-brand-light hover:text-brand-accent transition-colors duration-300"
         >
           {link}
         </a>
@@ -35,9 +35,10 @@ interface HeaderProps {
         links: string[];
         cta: string;
     }
+    onQuoteClick: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ translations }) => {
+const Header: React.FC<HeaderProps> = ({ translations, onQuoteClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -50,14 +51,14 @@ const Header: React.FC<HeaderProps> = ({ translations }) => {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-brand-dark/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-brand-dark/80 border-b border-brand-border backdrop-blur-lg' : 'bg-transparent'}`}>
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <Logo />
         <div className="hidden md:flex items-center space-x-6">
           <NavLinks className="flex space-x-2" links={translations.links} />
-          <a href="#contact" className="bg-gradient-to-r from-brand-accent-start to-brand-accent-end text-white font-semibold py-2 px-6 rounded-full hover:opacity-90 transition-opacity duration-300 transform hover:scale-105">
+          <button onClick={onQuoteClick} className="bg-brand-accent text-brand-dark font-semibold py-2 px-6 rounded-md hover:opacity-90 transition-opacity duration-300">
             {translations.cta}
-          </a>
+          </button>
         </div>
         <div className="md:hidden">
           <button onClick={() => setIsOpen(!isOpen)} className="text-white focus:outline-none z-50">

@@ -3,9 +3,9 @@ export type Language = 'fr' | 'en' | 'ar';
 const textContent = {
   header: {
     links: {
-      fr: ['Accueil', 'Services', 'Portfolio', 'Blog', 'À propos', 'Contact'],
-      en: ['Home', 'Services', 'Portfolio', 'Blog', 'About', 'Contact'],
-      ar: ['الرئيسية', 'خدماتنا', 'أعمالنا', 'المدونة', 'من نحن', 'اتصل بنا'],
+      fr: ['Accueil', 'Services', 'Portfolio', 'À propos', 'Contact'],
+      en: ['Home', 'Services', 'Portfolio', 'About', 'Contact'],
+      ar: ['الرئيسية', 'خدماتنا', 'أعمالنا', 'من نحن', 'اتصل بنا'],
     },
     cta: {
       fr: 'Devis Gratuit',
@@ -75,19 +75,19 @@ const textContent = {
     },
     stats: {
       fr: [
-        { value: '+350%', label: 'Augmentation du ROI', description: 'Pour un leader de la mode en ligne via nos campagnes Meta Ads ciblées.' },
-        { value: '+200%', label: 'Taux de Conversion', description: 'Optimisation du parcours client et A/B testing pour une marque de cosmétiques.' },
-        { value: 'Top 3', label: 'Classement Google', description: 'Stratégie SEO complète qui a propulsé un de nos clients sur des mots-clés stratégiques.' },
+        { value: '+350%', label: 'Augmentation du ROI', description: '' },
+        { value: '+200%', label: 'Taux de Conversion', description: '' },
+        { value: 'Top 3', label: 'Classement Google', description: '' },
       ],
       en: [
-        { value: '+350%', label: 'ROI Increase', description: 'For an online fashion leader via our targeted Meta Ads campaigns.' },
-        { value: '+200%', label: 'Conversion Rate', description: 'Customer journey optimization and A/B testing for a cosmetics brand.' },
-        { value: 'Top 3', label: 'Google Ranking', description: 'A comprehensive SEO strategy that propelled one of our clients on strategic keywords.' },
+        { value: '+350%', label: 'ROI Increase', description: '' },
+        { value: '+200%', label: 'Conversion Rate', description: '' },
+        { value: 'Top 3', label: 'Google Ranking', description: '' },
       ],
       ar: [
-        { value: '+350%', label: 'زيادة في عائد الاستثمار', description: 'لشركة رائدة في مجال الأزياء عبر الإنترنت من خلال حملاتنا المستهدفة على Meta Ads.' },
-        { value: '+200%', label: 'معدل التحويل', description: 'تحسين رحلة العميل واختبار A/B لعلامة تجارية لمستحضرات التجميل.' },
-        { value: 'أعلى 3', label: 'ترتيب جوجل', description: 'استراتيجية SEO شاملة دفعت بأحد عملائنا إلى كلمات مفتاحية استراتيجية.' },
+        { value: '+350%', label: 'زيادة في عائد الاستثمار', description: '' },
+        { value: '+200%', label: 'معدل التحويل', description: '' },
+        { value: 'أعلى 3', label: 'ترتيب جوجل', description: '' },
       ],
     },
     testimonial: {
@@ -137,67 +137,6 @@ const textContent = {
       ],
     },
   },
-  blog: {
-    title: {
-      fr: 'Notre Blog',
-      en: 'Our Blog',
-      ar: 'مدونتنا',
-    },
-    subtitle: {
-      fr: 'Conseils, tendances et études de cas sur le marketing digital.',
-      en: 'Tips, trends, and case studies on digital marketing.',
-      ar: 'نصائح واتجاهات ودراسات حالة حول التسويق الرقمي.',
-    },
-    posts: {
-      fr: [
-        { title: 'Les 5 tendances e-commerce à suivre en 2024', excerpt: 'Découvrez les stratégies qui vont façonner l\'avenir de la vente en ligne.' },
-        { title: 'Meta Ads vs Google Ads : Que choisir ?', excerpt: 'Une analyse complète pour vous aider à allouer votre budget publicitaire.' },
-        { title: 'Comment le SEO peut doubler votre trafic', excerpt: 'Étude de cas sur l\'un de nos clients qui a vu son trafic exploser.' },
-      ],
-      en: [
-        { title: 'The 5 e-commerce trends to watch in 2024', excerpt: 'Discover the strategies that will shape the future of online sales.' },
-        { title: 'Meta Ads vs Google Ads: Which to choose?', excerpt: 'A complete analysis to help you allocate your advertising budget.' },
-        { title: 'How SEO can double your traffic', excerpt: 'Case study on one of our clients who saw their traffic explode.' },
-      ],
-      ar: [
-        { title: 'أهم 5 اتجاهات للتجارة الإلكترونية في 2024', excerpt: 'اكتشف الاستراتيجيات التي ستشكل مستقبل المبيعات عبر الإنترنت.' },
-        { title: 'إعلانات Meta أم إعلانات Google: أيهما تختار؟', excerpt: 'تحليل كامل لمساعدتك في تخصيص ميزانية إعلاناتك.' },
-        { title: 'كيف يمكن لتحسين محركات البحث مضاعفة زوارك', excerpt: 'دراسة حالة لأحد عملائنا الذي شهد انفجارًا في عدد زوار موقعه.' },
-      ],
-    },
-    readMore: {
-      fr: 'Lire la suite',
-      en: 'Read more',
-      ar: 'اقرأ المزيد',
-    },
-    newsletter: {
-      title: {
-        fr: 'Rejoignez notre newsletter',
-        en: 'Join our newsletter',
-        ar: 'انضم إلى نشرتنا الإخبارية',
-      },
-      subtitle: {
-        fr: 'Recevez nos meilleurs conseils directement dans votre boîte mail.',
-        en: 'Get our best tips directly in your inbox.',
-        ar: 'احصل على أفضل نصائحنا مباشرة في بريدك الوارد.',
-      },
-      placeholder: {
-        fr: 'Votre adresse email',
-        en: 'Your email address',
-        ar: 'بريدك الإلكتروني',
-      },
-      cta: {
-        fr: "S'inscrire",
-        en: 'Subscribe',
-        ar: 'اشتراك',
-      },
-      subscribed_message: {
-        fr: 'Merci pour votre inscription !',
-        en: 'Thank you for subscribing!',
-        ar: 'شكرا لاشتراكك!',
-      }
-    },
-  },
   contact: {
     title: {
       fr: 'Contactez-nous',
@@ -215,48 +154,38 @@ const textContent = {
         en: 'Quick quote request',
         ar: 'طلب عرض سعر سريع',
       },
-      namePlaceholder: {
-        fr: 'Votre nom',
-        en: 'Your name',
-        ar: 'اسمك',
+      nameLabel: { fr: 'Nom complet', en: 'Full Name', ar: 'الاسم الكامل' },
+      companyNameLabel: { fr: "Nom de l'entreprise", en: 'Company Name', ar: 'اسم الشركة' },
+      emailLabel: { fr: 'Adresse e-mail', en: 'Email Address', ar: 'البريد الإلكتروني' },
+      phoneLabel: { fr: 'Numéro de téléphone', en: 'Phone Number', ar: 'رقم الهاتف' },
+      serviceLabel: { fr: 'Service souhaité', en: 'Service Needed', ar: 'الخدمة المطلوبة' },
+      serviceLabelHint: { fr: '(choix multiple)', en: '(multiple choice)', ar: '(اختيار متعدد)' },
+      budgetLabel: { fr: 'Budget estimé (DZD)', en: 'Estimated Budget (DZD)', ar: 'الميزانية التقديرية (دينار جزائري)' },
+      projectLabel: { fr: 'Description du projet', en: 'Project Description', ar: 'وصف المشروع' },
+      namePlaceholder: { fr: 'Votre nom', en: 'Your name', ar: 'اسمك' },
+      companyNamePlaceholder: { fr: 'Votre entreprise', en: 'Your company', ar: 'شركتك' },
+      emailPlaceholder: { fr: 'Votre email', en: 'Your email', ar: 'بريدك الإلكتروني' },
+      phonePlaceholder: { fr: 'Votre numéro de téléphone', en: 'Your phone number', ar: 'رقم هاتفك' },
+      servicePlaceholder: { fr: 'Choisir un service', en: 'Choose a service', ar: 'اختر خدمة' },
+      serviceOptions: {
+          fr: ['Marketing digital complet', 'Création de contenu', 'Sponsoring Meta Ads', 'Website e-commerce', 'Autre'],
+          en: ['Complete Digital Marketing', 'Content Creation', 'Meta Ads Sponsoring', 'E-commerce Website', 'Other'],
+          ar: ['التسويق الرقمي المتكامل', 'إنشاء المحتوى', 'إعلانات ميتا الممولة', 'موقع تجارة إلكتروني', 'أخرى'],
       },
-      emailPlaceholder: {
-        fr: 'Votre email',
-        en: 'Your email',
-        ar: 'بريدك الإلكتروني',
-      },
-      budget: {
-        fr: 'Votre budget',
-        en: 'Your budget',
-        ar: 'ميزانيتك',
-      },
+      budget: { fr: 'Choisir un budget', en: 'Choose a budget', ar: 'اختر ميزانية' },
       budgetOptions: {
-        fr: ['Moins de 5 000 €', '5 000 € - 10 000 €', '10 000 € - 25 000 €', 'Plus de 25 000 €'],
-        en: ['Less than €5,000', '€5,000 - €10,000', '€10,000 - €25,000', 'More than €25,000'],
-        ar: ['أقل من 5,000 يورو', '5,000 - 10,000 يورو', '10,000 - 25,000 يورو', 'أكثر من 25,000 يورو'],
+        fr: ['Moins de 100 000 DZD', '100 000 - 250 000 DZD', '250 000 - 500 000 DZD', 'Plus de 500 000 DZD'],
+        en: ['Less than 100,000 DZD', '100,000 - 250,000 DZD', '250,000 - 500,000 DZD', 'More than 500,000 DZD'],
+        ar: ['أقل من 100,000 دج', '100,000 - 250,000 دج', '250,000 - 500,000 دج', 'أكثر من 500,000 دج'],
       },
-      projectPlaceholder: {
-        fr: 'Décrivez votre projet',
-        en: 'Describe your project',
-        ar: 'صف مشروعك',
-      },
-      cta: {
-        fr: 'Envoyer la demande',
-        en: 'Send request',
-        ar: 'إرسال الطلب',
-      },
+      projectPlaceholder: { fr: 'Décrivez votre projet', en: 'Describe your project', ar: 'صف مشروعك' },
+      cta: { fr: 'Envoyer la demande', en: 'Send request', ar: 'إرسال الطلب' },
+      successTitle: { fr: 'Merci !', en: 'Thank you!', ar: 'شكراً لك!' },
+      successMessage: { fr: 'Votre demande a bien été envoyée. Nous reviendrons vers vous très prochainement.', en: 'Your request has been sent successfully. We will get back to you very soon.', ar: 'تم إرسال طلبك بنجاح. سنتواصل معك قريبًا جدًا.' },
     },
     info: {
-      contactDetails: {
-        fr: 'Coordonnées',
-        en: 'Contact Details',
-        ar: 'معلومات الاتصال',
-      },
-      followUs: {
-        fr: 'Suivez-nous',
-        en: 'Follow us',
-        ar: 'تابعنا',
-      },
+      contactDetails: { fr: 'Coordonnées', en: 'Contact Details', ar: 'معلومات الاتصال' },
+      followUs: { fr: 'Suivez-nous', en: 'Follow us', ar: 'تابعنا' },
     },
   },
   liveChat: {
@@ -325,30 +254,31 @@ const processTranslations = (lang: Language) => ({
         subtitle: textContent.process.subtitle[lang],
         steps: textContent.process.steps[lang],
     },
-    blog: {
-        title: textContent.blog.title[lang],
-        subtitle: textContent.blog.subtitle[lang],
-        posts: textContent.blog.posts[lang],
-        readMore: textContent.blog.readMore[lang],
-        newsletter: {
-            title: textContent.blog.newsletter.title[lang],
-            subtitle: textContent.blog.newsletter.subtitle[lang],
-            placeholder: textContent.blog.newsletter.placeholder[lang],
-            cta: textContent.blog.newsletter.cta[lang],
-            subscribed_message: textContent.blog.newsletter.subscribed_message[lang],
-        }
-    },
     contact: {
         title: textContent.contact.title[lang],
         subtitle: textContent.contact.subtitle[lang],
         form: {
             title: textContent.contact.form.title[lang],
+            nameLabel: textContent.contact.form.nameLabel[lang],
+            companyNameLabel: textContent.contact.form.companyNameLabel[lang],
+            emailLabel: textContent.contact.form.emailLabel[lang],
+            phoneLabel: textContent.contact.form.phoneLabel[lang],
+            serviceLabel: textContent.contact.form.serviceLabel[lang],
+            serviceLabelHint: textContent.contact.form.serviceLabelHint[lang],
+            budgetLabel: textContent.contact.form.budgetLabel[lang],
+            projectLabel: textContent.contact.form.projectLabel[lang],
             namePlaceholder: textContent.contact.form.namePlaceholder[lang],
+            companyNamePlaceholder: textContent.contact.form.companyNamePlaceholder[lang],
             emailPlaceholder: textContent.contact.form.emailPlaceholder[lang],
+            phonePlaceholder: textContent.contact.form.phonePlaceholder[lang],
+            servicePlaceholder: textContent.contact.form.servicePlaceholder[lang],
+            serviceOptions: textContent.contact.form.serviceOptions[lang],
             budget: textContent.contact.form.budget[lang],
             budgetOptions: textContent.contact.form.budgetOptions[lang],
             projectPlaceholder: textContent.contact.form.projectPlaceholder[lang],
             cta: textContent.contact.form.cta[lang],
+            successTitle: textContent.contact.form.successTitle[lang],
+            successMessage: textContent.contact.form.successMessage[lang],
         },
         info: {
             contactDetails: textContent.contact.info.contactDetails[lang],

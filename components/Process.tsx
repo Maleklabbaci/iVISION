@@ -8,21 +8,14 @@ interface Step {
 
 interface ProcessStepProps {
   step: Step;
-  stepLabel: string;
 }
 
-const ProcessStep: React.FC<ProcessStepProps> = ({ step, stepLabel }) => (
-  <div className="relative ps-8 md:ps-12">
-    <div className="absolute start-0 top-0 flex items-center">
-      <div className="w-5 h-5 rounded-full bg-brand-accent-start ring-4 ring-brand-accent-start/20"></div>
-      <div className="w-8 md:w-12 h-0.5 bg-white/20"></div>
+const ProcessStep: React.FC<ProcessStepProps> = ({ step }) => (
+    <div className="bg-brand-dark/50 border border-brand-border p-8 rounded-lg text-center backdrop-blur-lg">
+        <div className="text-4xl font-bold text-brand-accent mb-4">{step.step}</div>
+        <h3 className="text-xl font-bold text-brand-light mb-2">{step.title}</h3>
+        <p className="text-brand-gray">{step.description}</p>
     </div>
-    <div className="mb-1">
-      <span className="text-sm font-semibold text-brand-accent-end">{stepLabel} {step.step}</span>
-    </div>
-    <h3 className="text-xl font-bold mb-2 text-brand-light">{step.title}</h3>
-    <p className="text-brand-gray">{step.description}</p>
-  </div>
 );
 
 interface ProcessProps {
@@ -34,27 +27,19 @@ interface ProcessProps {
 }
 
 const Process: React.FC<ProcessProps> = ({ translations }) => {
-  const stepLabel = document.documentElement.lang === 'fr' ? 'Étape' : document.documentElement.lang === 'en' ? 'Step' : 'الخطوة';
   return (
-    <section id="process" className="py-20 bg-brand-dark/95 backdrop-blur-sm">
+    <section id="a-propos" className="py-20 bg-transparent">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-brand-light">{translations.title}</h2>
-          <p className="text-lg text-brand-gray mt-2">{translations.subtitle}</p>
-          <div className="w-24 h-1 bg-gradient-to-r from-brand-accent-start to-brand-accent-end mx-auto mt-4"></div>
+          <p className="text-lg text-brand-gray mt-2 max-w-2xl mx-auto">{translations.subtitle}</p>
+          <div className="w-24 h-1 bg-brand-accent mx-auto mt-4"></div>
         </div>
         
-        <div className="relative max-w-2xl mx-auto">
-          <div className="absolute start-2.5 top-0 h-full w-0.5 bg-white/20"></div>
-          <div className="space-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {translations.steps.map((step, index) => (
-              <ProcessStep 
-                key={index}
-                step={step}
-                stepLabel={stepLabel}
-              />
+                <ProcessStep key={index} step={step} />
             ))}
-          </div>
         </div>
       </div>
     </section>

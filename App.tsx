@@ -4,15 +4,17 @@ import Hero from './components/Hero';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
 import Process from './components/Process';
-import Blog from './components/Blog';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LiveChat from './components/LiveChat';
 import LanguageSelector from './components/LanguageSelector';
 import { translations, Language } from './lib/translations';
+import AnimatedBackground from './components/AnimatedBackground';
+import QuoteForm from './components/QuoteForm';
 
 const App: React.FC = () => {
   const [language, setLanguage] = useState<Language | null>(null);
+  const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
   
   useEffect(() => {
     if (language) {
@@ -29,25 +31,37 @@ const App: React.FC = () => {
     setLanguage(selectedLanguage);
   };
 
-  if (!language) {
-    return <LanguageSelector onSelectLanguage={handleSelectLanguage} />;
-  }
+  const handleOpenQuoteForm = () => setIsQuoteFormOpen(true);
+  const handleCloseQuoteForm = () => setIsQuoteFormOpen(false);
   
-  const t = translations[language];
+  const t = language ? translations[language] : null;
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header translations={t.header} />
-      <main className="flex-grow">
-        <Hero translations={t.hero} />
-        <Services translations={t.services} />
-        <Portfolio translations={t.portfolio} />
-        <Process translations={t.process} />
-        <Blog translations={t.blog} />
-        <Contact translations={t.contact} />
-      </main>
-      <LiveChat translations={t.liveChat} />
-      <Footer translations={t.footer} />
+    <div className="min-h-screen relative">
+      <AnimatedBackground />
+      
+      {!language || !t ? (
+        <div key="lang-selector" className="min-h-screen flex items-center justify-center p-6">
+            <LanguageSelector onSelectLanguage={handleSelectLanguage} />
+        </div>
+      ) : (
+        <div key="main-content" className="relative z-10 flex flex-col min-h-screen animate-blur-in">
+          <Header translations={t.header} onQuoteClick={handleOpenQuoteForm} />
+          <main className="flex-grow">
+            <Hero translations={t.hero} onQuoteClick={handleOpenQuoteForm} />
+            <Services translations={t.services} />
+            <Portfolio translations={t.portfolio} />
+            <Process translations={t.process} />
+            <Contact translations={t.contact} />
+          </main>
+          <LiveChat translations={t.liveChat} />
+          <Footer translations={t.footer} />
+        </div>
+      )}
+
+      {isQuoteFormOpen && t && (
+        <QuoteForm translations={t.contact} onClose={handleCloseQuoteForm} />
+      )}
     </div>
   );
 };

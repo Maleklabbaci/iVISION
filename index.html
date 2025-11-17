@@ -11,14 +11,49 @@
         theme: {
           extend: {
             colors: {
-              'brand-dark': '#111827',
-              'brand-light': '#F9FAFB',
-              'brand-gray': '#9CA3AF',
-              'brand-accent-start': '#8B5CF6',
-              'brand-accent-end': '#EC4899',
+              'brand-dark': '#0D1117',
+              'brand-light': '#FFFFFF',
+              'brand-gray': '#8D96A0',
+              'brand-accent': '#38BDF8',
+              'brand-border': 'rgba(255, 255, 255, 0.1)',
             },
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              'fade-in-down': 'fadeInDown 0.8s ease-out forwards',
+              'blur-in': 'blurIn 0.7s ease-out forwards',
+              'scale-in': 'scaleIn 0.3s ease-out forwards',
+              'blob-animation': 'blob-animation 15s infinite alternate',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              fadeInDown: {
+                '0%': { opacity: '0', transform: 'translateY(-20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              blurIn: {
+                '0%': { opacity: '0', filter: 'blur(10px)' },
+                '100%': { opacity: '1', filter: 'blur(0px)' },
+              },
+              scaleIn: {
+                '0%': { opacity: '0', transform: 'scale(0.95)' },
+                '100%': { opacity: '1', transform: 'scale(1)' },
+              },
+              'blob-animation': {
+                '0%': { transform: 'translate(0, 0) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0, 0) scale(1)' },
+              }
+            },
+            transitionDelay: {
+              '2000': '2000ms',
+              '4000': '4000ms',
             }
           }
         }
