@@ -18,11 +18,6 @@ interface PortfolioProps {
     title: string;
     subtitle: string;
     projects: Project[];
-    testimonial: {
-      quote: string;
-      author: string;
-      position: string;
-    }
   },
   onQuoteClick: () => void;
 }
@@ -70,7 +65,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ translations, onQuoteClick }) => 
           <div className="w-24 h-1 bg-brand-accent mx-auto mt-4"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {translations.projects.map((project, index) => (
             <div 
               key={index} 
@@ -98,21 +93,6 @@ const Portfolio: React.FC<PortfolioProps> = ({ translations, onQuoteClick }) => 
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-brand-dark/50 border border-brand-border p-8 md:p-12 rounded-lg text-center relative overflow-hidden">
-            <div className="absolute top-4 left-4 text-brand-accent/20">
-              <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor"><path d="M9.983 3v7.391c0 2.908-2.352 5.261-5.261 5.261h-1.722v4.348h1.722c5.082 0 9.217-4.135 9.217-9.217v-7.391h-3.956zm14.017 0v7.391c0 2.908-2.352 5.261-5.261 5.261h-1.722v4.348h1.722c5.082 0 9.217-4.135 9.217-9.217v-7.391h-3.956z"/></svg>
-            </div>
-            <blockquote className="text-xl md:text-2xl italic text-brand-light mb-6 relative z-10">
-              "{translations.testimonial.quote}"
-            </blockquote>
-            <cite className="block not-italic">
-              <span className="font-bold text-brand-accent text-lg">{translations.testimonial.author}</span>
-              <span className="text-brand-gray">, {translations.testimonial.position}</span>
-            </cite>
-          </div>
         </div>
       </div>
     </section>

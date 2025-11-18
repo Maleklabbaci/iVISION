@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import ClientLogos from './components/ClientLogos';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
-import Process from './components/Process';
+import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -11,7 +12,7 @@ import LiveChat from './components/LiveChat';
 import LanguageSelector from './components/LanguageSelector';
 import { translations, Language } from './lib/translations';
 import QuoteForm from './components/QuoteForm';
-import ClientLogos from './components/ClientLogos';
+import SplashScreen from './components/SplashScreen';
 
 const StaticBackground: React.FC = () => (
   <div className="fixed top-0 left-0 w-full h-full z-[-1] bg-brand-dark">
@@ -27,22 +28,30 @@ const StaticBackground: React.FC = () => (
 
 
 const App: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [language, setLanguage] = useState<Language | null>(null);
+  const [showLangSelector, setShowLangSelector] = useState(true);
+  const [isExitingLangSelector, setIsExitingLangSelector] = useState(false);
   const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
   
   useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
     if (language) {
       document.documentElement.lang = language;
-      if (language === 'ar') {
-        document.documentElement.dir = 'rtl';
-      } else {
-        document.documentElement.dir = 'ltr';
-      }
+      document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
     }
   }, [language]);
 
   const handleSelectLanguage = (selectedLanguage: Language) => {
-    setLanguage(selectedLanguage);
+    setIsExitingLangSelector(true);
+    setTimeout(() => {
+      setLanguage(selectedLanguage);
+      setShowLangSelector(false);
+    }, 500); // Duration matches animate-fade-out in tailwind.config
   };
 
   const handleOpenQuoteForm = () => setIsQuoteFormOpen(true);
@@ -50,15 +59,24 @@ const App: React.FC = () => {
   
   const t = language ? translations[language] : null;
 
+  if (isLoading) {
+    return <SplashScreen />;
+  }
+
   return (
     <div className="min-h-screen relative">
       <StaticBackground />
       
-      {!language || !t ? (
-        <div key="lang-selector" className="min-h-screen flex items-center justify-center p-6 bg-brand-dark/30 backdrop-blur-xl">
+      {showLangSelector && (
+        <div 
+          key="lang-selector" 
+          className={`min-h-screen flex items-center justify-center p-6 bg-brand-dark/30 backdrop-blur-xl ${isExitingLangSelector ? 'animate-fade-out' : 'animate-blur-in'}`}
+        >
             <LanguageSelector onSelectLanguage={handleSelectLanguage} />
         </div>
-      ) : (
+      )}
+      
+      {t && (
         <div key="main-content" className="relative z-10 flex flex-col min-h-screen animate-blur-in bg-brand-dark/30 backdrop-blur-xl">
           <Header translations={t.header} onQuoteClick={handleOpenQuoteForm} />
           <main className="flex-grow">
@@ -66,7 +84,7 @@ const App: React.FC = () => {
             <ClientLogos translations={t.clientLogos} />
             <Services translations={t.services} />
             <Portfolio translations={t.portfolio} onQuoteClick={handleOpenQuoteForm} />
-            <Process translations={t.process} />
+            <Testimonials translations={t.testimonials} />
             <FAQ translations={t.faq} />
             <Contact translations={t.contact} />
           </main>

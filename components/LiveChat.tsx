@@ -60,7 +60,7 @@ const LiveChat: React.FC<LiveChatProps> = ({ translations }) => {
 
       {isOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-end justify-end z-50 p-0 sm:p-6" onClick={() => setIsOpen(false)}>
-          <div onClick={(e) => e.stopPropagation()} className="bg-brand-dark border border-brand-border w-full h-full sm:h-auto sm:max-w-sm sm:max-h-[70vh] rounded-lg shadow-xl flex flex-col transform transition-transform duration-300 animate-slide-in-up text-brand-light">
+          <div onClick={(e) => e.stopPropagation()} className="bg-brand-dark border-t sm:border border-brand-border w-full h-[85vh] rounded-t-lg sm:h-auto sm:max-w-sm sm:max-h-[70vh] sm:rounded-lg shadow-xl flex flex-col transform transition-transform duration-300 animate-slide-in-up text-brand-light">
             {/* Header */}
             <div className="bg-brand-dark p-4 flex justify-between items-center rounded-t-lg flex-shrink-0 border-b border-brand-border">
               <h3 className="font-bold text-lg text-brand-light">{translations.title}</h3>

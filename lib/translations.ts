@@ -3,9 +3,9 @@ export type Language = 'fr' | 'en' | 'ar';
 const textContent = {
   header: {
     links: {
-      fr: ['Accueil', 'Services', 'Portfolio', 'À propos', 'Contact'],
-      en: ['Home', 'Services', 'Portfolio', 'About', 'Contact'],
-      ar: ['الرئيسية', 'خدماتنا', 'أعمالنا', 'من نحن', 'اتصل بنا'],
+      fr: ['Accueil', 'Services', 'Portfolio', 'Contact'],
+      en: ['Home', 'Services', 'Portfolio', 'Contact'],
+      ar: ['الرئيسية', 'خدماتنا', 'أعمالنا', 'اتصل بنا'],
     },
     cta: {
       fr: 'Devis Gratuit',
@@ -203,52 +203,80 @@ const textContent = {
         },
       ],
     },
-    testimonial: {
-      quote: {
-        fr: "L'équipe d'iVISION a complètement transformé notre approche du marketing digital. Notre chiffre d'affaires a explosé en seulement 6 mois. Une collaboration exceptionnelle !",
-        en: "The iVISION team completely transformed our approach to digital marketing. Our revenue exploded in just 6 months. An exceptional collaboration!",
-        ar: "لقد غيّر فريق iVISION نهجنا في التسويق الرقمي تمامًا. ارتفعت إيراداتنا بشكل كبير في 6 أشهر فقط. تعاون استثنائي!",
-      },
-      author: {
-        fr: 'Jean Dupont',
-        en: 'John Smith',
-        ar: 'جون سميث',
-      },
-      position: {
-        fr: 'CEO, E-commerce Mode',
-        en: 'CEO, Fashion E-commerce',
-        ar: 'الرئيس التنفيذي، تجارة أزياء إلكترونية',
-      },
-    },
   },
-  process: {
+  testimonials: {
     title: {
-      fr: 'Notre Processus',
-      en: 'Our Process',
-      ar: 'نهجنا',
+      fr: 'Ce que disent nos clients',
+      en: 'What Our Clients Say',
+      ar: 'ماذا يقول عملاؤنا',
     },
     subtitle: {
-      fr: 'Une méthode de travail claire pour des résultats optimaux.',
-      en: 'A clear working method for optimal results.',
-      ar: 'طريقة عمل واضحة لنتائج مثلى.',
+      fr: 'Découvrez comment nous avons aidé des entreprises comme la vôtre à réussir.',
+      en: 'Discover how we have helped businesses like yours succeed.',
+      ar: 'اكتشف كيف ساعدنا الشركات مثل شركتك على تحقيق النجاح.',
     },
-    steps: {
+    items: {
       fr: [
-        { step: '01', title: 'Audit & Stratégie', description: 'Nous analysons votre marché, vos concurrents et vos objectifs pour bâtir une stratégie sur-mesure.' },
-        { step: '02', title: 'Mise en place & Optimisation', description: 'Lancement des campagnes, optimisation continue et tests A/B pour maximiser les performances.' },
-        { step: '03', title: 'Analyse & Scaling', description: "Reporting détaillé et identification des leviers de croissance pour passer à l'échelle supérieure." },
+        {
+          quote: "L'équipe d'iVISION a complètement transformé notre approche du marketing digital. Notre chiffre d'affaires a explosé en seulement 6 mois. Une collaboration exceptionnelle !",
+          author: 'Jean Dupont',
+          position: 'CEO, E-commerce Mode',
+          avatar: 'https://randomuser.me/api/portraits/men/32.jpg'
+        },
+        {
+          quote: "Leur expertise en création de contenu a donné un nouveau souffle à notre marque. L'engagement sur nos réseaux sociaux n'a jamais été aussi élevé. Je recommande vivement.",
+          author: 'Sophie Martin',
+          position: 'Directrice Marketing, Marque de Cosmétiques',
+          avatar: 'https://randomuser.me/api/portraits/women/44.jpg'
+        },
+        {
+          quote: "Une agence pro, réactive et créative. Ils ont su comprendre nos besoins et proposer des solutions sur-mesure qui ont dépassé nos attentes. Le ROI est au rendez-vous.",
+          author: 'Karim Bennani',
+          position: 'Fondateur, Startup Tech',
+          avatar: 'https://randomuser.me/api/portraits/men/51.jpg'
+        }
       ],
       en: [
-        { step: '01', title: 'Audit & Strategy', description: 'We analyze your market, competitors, and goals to build a custom strategy.' },
-        { step: '02', title: 'Implementation & Optimization', description: 'Campaign launch, continuous optimization, and A/B testing to maximize performance.' },
-        { step: '03', title: 'Analysis & Scaling', description: 'Detailed reporting and identification of growth levers to scale up.' },
+        {
+          quote: "The iVISION team completely transformed our approach to digital marketing. Our revenue exploded in just 6 months. An exceptional collaboration!",
+          author: 'John Smith',
+          position: 'CEO, Fashion E-commerce',
+          avatar: 'https://randomuser.me/api/portraits/men/32.jpg'
+        },
+        {
+          quote: "Their content creation expertise has breathed new life into our brand. Engagement on our social media has never been higher. I highly recommend them.",
+          author: 'Emily White',
+          position: 'Marketing Director, Cosmetics Brand',
+          avatar: 'https://randomuser.me/api/portraits/women/44.jpg'
+        },
+        {
+          quote: "A professional, responsive, and creative agency. They understood our needs and proposed custom solutions that exceeded our expectations. The ROI is definitely there.",
+          author: 'Michael Chen',
+          position: 'Founder, Tech Startup',
+          avatar: 'https://randomuser.me/api/portraits/men/51.jpg'
+        }
       ],
       ar: [
-        { step: '01', title: 'التدقيق والاستراتيجية', description: 'نقوم بتحليل سوقك ومنافسيك وأهدافك لبناء استراتيجية مخصصة.' },
-        { step: '02', title: 'التنفيذ والتحسين', description: 'إطلاق الحملات، والتحسين المستمر، واختبارات A/B لتعظيم الأداء.' },
-        { step: '03', title: 'التحليل والتوسع', description: 'تقارير مفصلة وتحديد روافع النمو للانتقال إلى المستوى التالي.' },
-      ],
-    },
+        {
+          quote: "لقد غيّر فريق iVISION نهجنا في التسويق الرقمي تمامًا. ارتفعت إيراداتنا بشكل كبير في 6 أشهر فقط. تعاون استثنائي!",
+          author: 'علي أحمد',
+          position: 'الرئيس التنفيذي، تجارة أزياء إلكترونية',
+          avatar: 'https://randomuser.me/api/portraits/men/32.jpg'
+        },
+        {
+          quote: "خبرتهم في إنشاء المحتوى بثت حياة جديدة في علامتنا التجارية. لم يكن التفاعل على وسائل التواصل الاجتماعي لدينا أعلى من أي وقت مضى. أوصي بهم بشدة.",
+          author: 'فاطمة الزهراء',
+          position: 'مديرة التسويق، علامة تجارية لمستحضرات التجميل',
+          avatar: 'https://randomuser.me/api/portraits/women/44.jpg'
+        },
+        {
+          quote: "وكالة محترفة وسريعة الاستجابة ومبدعة. لقد فهموا احتياجاتنا واقترحوا حلولاً مخصصة فاقت توقعاتنا. عائد الاستثمار واضح وملموس.",
+          author: 'يوسف محمد',
+          position: 'مؤسس، شركة تقنية ناشئة',
+          avatar: 'https://randomuser.me/api/portraits/men/51.jpg'
+        }
+      ]
+    }
   },
   faq: {
     title: {
@@ -395,16 +423,11 @@ const processTranslations = (lang: Language) => ({
         title: textContent.portfolio.title[lang],
         subtitle: textContent.portfolio.subtitle[lang],
         projects: textContent.portfolio.projects[lang],
-        testimonial: {
-            quote: textContent.portfolio.testimonial.quote[lang],
-            author: textContent.portfolio.testimonial.author[lang],
-            position: textContent.portfolio.testimonial.position[lang],
-        }
     },
-    process: {
-        title: textContent.process.title[lang],
-        subtitle: textContent.process.subtitle[lang],
-        steps: textContent.process.steps[lang],
+    testimonials: {
+      title: textContent.testimonials.title[lang],
+      subtitle: textContent.testimonials.subtitle[lang],
+      items: textContent.testimonials.items[lang],
     },
     faq: {
         title: textContent.faq.title[lang],

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface FooterProps {
     translations: {
@@ -10,10 +10,35 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ translations }) => {
   const year = new Date().getFullYear();
-  const staticLinks = ['accueil', 'services', 'portfolio', 'a-propos', 'contact'];
+  const staticLinks = ['accueil', 'services', 'portfolio', 'contact'];
+  const footerRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { root: null, rootMargin: '0px', threshold: 0.1 }
+    );
+
+    const currentRef = footerRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
 
   return (
-    <footer className="bg-brand-dark border-t border-brand-border text-brand-gray">
+    <footer ref={footerRef} className={`bg-brand-dark border-t border-brand-border text-brand-gray ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
       <div className="container mx-auto px-6 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
           <div className="mb-6 md:mb-0">
