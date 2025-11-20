@@ -81,23 +81,27 @@ const Testimonials: React.FC<TestimonialsProps> = ({ translations }) => {
                 className={`[grid-area:1/1] transition-opacity duration-700 ease-in-out flex flex-col justify-center items-center ${currentIndex === index ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
               >
                 <img src={testimonial.avatar} alt={testimonial.author} className="w-20 h-20 rounded-full mb-4 border-2 border-brand-accent" loading="lazy" />
-                <blockquote className="text-lg md:text-xl italic text-brand-light mb-6 max-w-2xl">
+                <blockquote className="text-lg md:text-xl italic text-brand-light mb-6 max-w-2xl relative z-10">
                   "{testimonial.quote}"
                 </blockquote>
                 <cite className="block not-italic">
-                  <span className="font-bold text-brand-accent text-lg">{testimonial.author}</span>
-                  <span className="text-brand-gray">, {testimonial.position}</span>
+                  <div className="font-bold text-brand-accent text-lg">{testimonial.author}</div>
+                  <div className="text-brand-gray text-sm mt-1">{testimonial.position}</div>
                 </cite>
               </div>
             ))}
           </div>
-          <div className="flex justify-center space-x-3 mt-8">
+          <div className="flex justify-center items-center gap-2 mt-8">
             {translations.items.map((_, index) => (
               <button
                 key={index}
                 aria-label={`Go to slide ${index + 1}`}
                 onClick={() => handleNavClick(index)}
-                className={`w-3 h-3 rounded-full transition-colors duration-300 ${currentIndex === index ? 'bg-brand-accent' : 'bg-brand-border hover:bg-brand-gray'}`}
+                className={`h-3 rounded-full transition-all duration-300 ${
+                    currentIndex === index 
+                    ? 'w-8 bg-brand-accent' 
+                    : 'w-3 bg-brand-border hover:bg-brand-gray'
+                }`}
               />
             ))}
           </div>

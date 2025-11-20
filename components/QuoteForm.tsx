@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
-// REMPLACEZ CECI PAR VOTRE ID DE FORMULAIRE FORMSPARK
-// Exemple: const FORMSPARK_FORM_ID = "xY7z123";
-const FORMSPARK_FORM_ID = "YOUR_FORMSPARK_FORM_ID";
+const FORMSPARK_FORM_ID = "3hB9voxjF";
 
 interface ContactTranslations {
     form: {
@@ -212,12 +210,6 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ translations, onClose }) => {
                 {errorMessage && (
                   <div className="bg-red-500/20 border border-red-500 text-red-200 p-4 rounded-md mb-6 text-center">
                     {errorMessage}
-                  </div>
-                )}
-
-                {FORMSPARK_FORM_ID === "YOUR_FORMSPARK_FORM_ID" && (
-                  <div className="bg-yellow-500/20 border border-yellow-500 text-yellow-200 p-4 rounded-md mb-6 text-center text-sm">
-                    Developer Note: Please replace <code>YOUR_FORMSPARK_FORM_ID</code> in <code>components/QuoteForm.tsx</code> with your actual Formspark ID.
                   </div>
                 )}
 

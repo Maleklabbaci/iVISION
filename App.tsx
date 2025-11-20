@@ -6,7 +6,6 @@ import Services from './components/Services';
 import Portfolio from './components/Portfolio';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LiveChat from './components/LiveChat';
 import LanguageSelector from './components/LanguageSelector';
@@ -89,7 +88,6 @@ const App: React.FC = () => {
             <Portfolio translations={t.portfolio} onQuoteClick={handleOpenQuoteForm} />
             <Testimonials translations={t.testimonials} />
             <FAQ translations={t.faq} />
-            <Contact translations={t.contact} />
           </main>
           <LiveChat translations={t.liveChat} />
           <ScrollToTopButton />

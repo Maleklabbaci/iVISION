@@ -3,9 +3,9 @@ export type Language = 'fr' | 'en' | 'ar';
 const textContent = {
   header: {
     links: {
-      fr: ['Accueil', 'Services', 'Processus', 'Portfolio', 'Contact'],
-      en: ['Home', 'Services', 'Process', 'Portfolio', 'Contact'],
-      ar: ['الرئيسية', 'خدماتنا', 'عمليتنا', 'أعمالنا', 'اتصل بنا'],
+      fr: ['Accueil', 'Services', 'Processus', 'Portfolio'],
+      en: ['Home', 'Services', 'Process', 'Portfolio'],
+      ar: ['الرئيسية', 'خدماتنا', 'عمليتنا', 'أعمالنا'],
     },
     cta: {
       fr: 'Devis Gratuit',
@@ -343,16 +343,6 @@ const textContent = {
     }
   },
   contact: {
-    title: {
-      fr: 'Contactez-nous',
-      en: 'Contact Us',
-      ar: 'اتصل بنا',
-    },
-    subtitle: {
-      fr: 'Prêt à démarrer un projet avec nous ?',
-      en: 'Ready to start a project with us?',
-      ar: 'هل أنت مستعد لبدء مشروع معنا؟',
-    },
     form: {
       title: {
         fr: 'Demande de devis rapide',
@@ -389,10 +379,6 @@ const textContent = {
       cta: { fr: 'Envoyer la demande', en: 'Send request', ar: 'إرسال الطلب' },
       successTitle: { fr: 'Merci !', en: 'Thank you!', ar: 'شكراً لك!' },
       successMessage: { fr: 'Votre demande a bien été envoyée. Nous reviendrons vers vous très prochainement.', en: 'Your request has been sent successfully. We will get back to you very soon.', ar: 'تم إرسال طلبك بنجاح. سنتواصل معك قريبًا جدًا.' },
-    },
-    info: {
-      contactDetails: { fr: 'Coordonnées', en: 'Contact Details', ar: 'معلومات الاتصال' },
-      followUs: { fr: 'Suivez-nous', en: 'Follow us', ar: 'تابعنا' },
     },
   },
   liveChat: {
@@ -472,8 +458,6 @@ const processTranslations = (lang: Language) => ({
         faqs: textContent.faq.faqs[lang],
     },
     contact: {
-        title: textContent.contact.title[lang],
-        subtitle: textContent.contact.subtitle[lang],
         form: {
             title: textContent.contact.form.title[lang],
             yourInfoTitle: textContent.contact.form.yourInfoTitle[lang],
@@ -499,10 +483,6 @@ const processTranslations = (lang: Language) => ({
             successTitle: textContent.contact.form.successTitle[lang],
             successMessage: textContent.contact.form.successMessage[lang],
         },
-        info: {
-            contactDetails: textContent.contact.info.contactDetails[lang],
-            followUs: textContent.contact.info.followUs[lang],
-        }
     },
     liveChat: {
         title: textContent.liveChat.title[lang],
