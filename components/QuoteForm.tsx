@@ -35,6 +35,21 @@ interface QuoteFormProps {
     onClose: () => void;
 }
 
+// Icons
+const IconTrendingUp = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>;
+const IconCamera = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>;
+const IconMegaphone = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-2.236 9.168-5.514C18.332 18.89 12.056 22 7 22a4.001 4.001 0 01-1.564-.317z" /></svg>;
+const IconShoppingCart = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>;
+const IconDots = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>;
+
+const serviceIcons = [
+  <IconTrendingUp />,
+  <IconCamera />,
+  <IconMegaphone />,
+  <IconShoppingCart />,
+  <IconDots />
+];
+
 interface CheckboxGroupProps {
   label: string;
   hint: string;
@@ -43,18 +58,21 @@ interface CheckboxGroupProps {
   selectedValues: string[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
+  icons?: React.ReactNode[];
 }
 
-const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ label, hint, name, options, selectedValues, onChange, required }) => (
+const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ label, hint, name, options, selectedValues, onChange, required, icons }) => (
   <div>
     <label className="block text-sm font-medium text-brand-gray mb-2">
       {label} <span className="text-xs opacity-75">{hint}</span>
     </label>
-    <div className="grid grid-cols-2 gap-2">
-      {options.map((option) => {
+    <div className="grid grid-cols-2 gap-3">
+      {options.map((option, index) => {
         const isSelected = selectedValues.includes(option);
+        const Icon = icons ? icons[index] : null;
+        
         return (
-          <label key={option} className={`cursor-pointer text-center p-3 border rounded-md transition-all duration-200 text-sm ${
+          <label key={option} className={`cursor-pointer flex flex-col items-center justify-center gap-3 p-4 border rounded-md transition-all duration-200 text-sm h-full ${
             isSelected
               ? 'bg-brand-accent text-brand-dark border-brand-accent font-semibold'
               : 'bg-brand-dark/50 border-brand-border hover:border-brand-accent/50'
@@ -67,7 +85,12 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ label, hint, name, option
               onChange={onChange}
               className="sr-only"
             />
-            {option}
+            {Icon && (
+              <div className={`transition-colors duration-200 ${isSelected ? 'text-brand-dark' : 'text-brand-accent'}`}>
+                {Icon}
+              </div>
+            )}
+            <span className="text-center leading-tight">{option}</span>
           </label>
         );
       })}
@@ -89,7 +112,7 @@ const RadioBoxGroup: React.FC<RadioBoxGroupProps> = ({ label, name, options, sel
     <label className="block text-sm font-medium text-brand-gray mb-2">{label}</label>
     <div className="grid grid-cols-2 gap-2">
       {options.map((option) => (
-        <label key={option} className={`cursor-pointer text-center p-3 border rounded-md transition-all duration-200 text-sm ${
+        <label key={option} className={`cursor-pointer text-center p-3 border rounded-md transition-all duration-200 text-sm flex items-center justify-center h-full ${
           selectedValue === option
             ? 'bg-brand-accent text-brand-dark border-brand-accent font-semibold'
             : 'bg-brand-dark/50 border-brand-border hover:border-brand-accent/50'
@@ -251,6 +274,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ translations, onClose }) => {
                           selectedValues={formData.services}
                           onChange={handleServiceChange}
                           required
+                          icons={serviceIcons}
                         />
                         <RadioBoxGroup
                           label={translations.form.budgetLabel}
