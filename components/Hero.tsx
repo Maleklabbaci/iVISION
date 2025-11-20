@@ -16,7 +16,7 @@ const Hero: React.FC<HeroProps> = ({ translations, onQuoteClick }) => {
       <img
         src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1974&auto=format&fit=crop"
         alt="A team of professionals collaborating on a digital project."
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="absolute inset-0 w-full h-full object-cover z-0 animate-subtle-zoom"
         loading="lazy"
       />
       {/* Overlay for readability */}
@@ -34,7 +34,7 @@ const Hero: React.FC<HeroProps> = ({ translations, onQuoteClick }) => {
         </p>
         <button 
           onClick={onQuoteClick}
-          className="bg-brand-accent text-brand-dark font-bold py-4 px-10 rounded-md text-lg hover:opacity-90 transition-opacity duration-300 transform hover:scale-105 inline-block shadow-lg shadow-brand-accent/20 animate-fade-in-up"
+          className="bg-brand-accent text-brand-dark font-bold py-4 px-10 rounded-md text-lg hover:opacity-90 transition-all duration-300 transform hover:scale-105 inline-block shadow-lg shadow-brand-accent/20 animate-fade-in-up"
           style={{ animationDelay: '600ms' }}
         >
           {translations.cta}

@@ -36,7 +36,8 @@ const App: React.FC = () => {
   const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
   
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2500);
+    // Timeout increased to 2600ms to ensure the 2000ms delay + 500ms fade out of the Splash Screen completes fully before unmounting.
+    const timer = setTimeout(() => setIsLoading(false), 2600);
     return () => clearTimeout(timer);
   }, []);
 
