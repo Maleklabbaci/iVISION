@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 
+// REMPLACEZ CECI PAR VOTRE ID DE FORMULAIRE FORMSPARK
+// Exemple: const FORMSPARK_FORM_ID = "xY7z123";
+const FORMSPARK_FORM_ID = "YOUR_FORMSPARK_FORM_ID";
+
 interface ContactTranslations {
     form: {
         title: string;
@@ -120,6 +124,8 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ translations, onClose }) => {
     project: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -136,14 +142,43 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ translations, onClose }) => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.services.length === 0) {
-        // Simple validation example
         alert('Please select at least one service.');
         return;
     }
-    setIsSubmitted(true);
+
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const response = await fetch(`https://submit-form.com/${FORMSPARK_FORM_ID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          services: formData.services.join(', '), // Flatten array for better readability in email
+          "_email.subject": `Nouveau lead iVISION de ${formData.name}`, // Custom subject for Formspark
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        // Fallback if the ID is wrong or service is down
+        console.error("Form submission failed");
+        setErrorMessage("Une erreur est survenue. Veuillez réessayer ou nous contacter directement par email.");
+      }
+    } catch (error) {
+      console.error("Form submission error", error);
+      setErrorMessage("Erreur de connexion. Veuillez vérifier votre internet.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -152,24 +187,40 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ translations, onClose }) => {
         onClick={onClose}
     >
       <div
-        className="relative bg-brand-dark/70 backdrop-blur-sm border border-brand-border text-brand-light p-8 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-scale-in"
+        className="relative bg-brand-dark/90 backdrop-blur-md border border-brand-border text-brand-light p-8 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-scale-in shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button onClick={onClose} className="absolute top-4 right-4 text-brand-gray hover:text-brand-light text-2xl z-10">&times;</button>
         
         {isSubmitted ? (
             <div className="text-center p-8">
-                 <div className="mx-auto bg-brand-accent/20 text-brand-accent w-16 h-16 rounded-full flex items-center justify-center mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <div className="mx-auto bg-brand-accent/20 text-brand-accent w-20 h-20 rounded-full flex items-center justify-center mb-6 animate-fade-in-up">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                  </div>
-                <h3 className="text-2xl font-bold mb-2 text-brand-light">{translations.form.successTitle}</h3>
-                <p className="text-brand-gray">{translations.form.successMessage}</p>
+                <h3 className="text-3xl font-bold mb-4 text-brand-light animate-fade-in-up" style={{animationDelay: '100ms'}}>{translations.form.successTitle}</h3>
+                <p className="text-brand-gray text-lg animate-fade-in-up" style={{animationDelay: '200ms'}}>{translations.form.successMessage}</p>
+                <button onClick={onClose} className="mt-8 bg-brand-border hover:bg-brand-gray/20 text-brand-light py-2 px-6 rounded-md transition-colors animate-fade-in-up" style={{animationDelay: '300ms'}}>
+                  Fermer
+                </button>
             </div>
         ) : (
             <>
                 <h3 className="text-2xl font-bold mb-8 text-center">{translations.form.title}</h3>
+                
+                {errorMessage && (
+                  <div className="bg-red-500/20 border border-red-500 text-red-200 p-4 rounded-md mb-6 text-center">
+                    {errorMessage}
+                  </div>
+                )}
+
+                {FORMSPARK_FORM_ID === "YOUR_FORMSPARK_FORM_ID" && (
+                  <div className="bg-yellow-500/20 border border-yellow-500 text-yellow-200 p-4 rounded-md mb-6 text-center text-sm">
+                    Developer Note: Please replace <code>YOUR_FORMSPARK_FORM_ID</code> in <code>components/QuoteForm.tsx</code> with your actual Formspark ID.
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
                     {/* Left Column: User Info */}
@@ -179,19 +230,19 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ translations, onClose }) => {
                         </h4>
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-brand-gray mb-1">{translations.form.nameLabel}</label>
-                            <input id="name" type="text" name="name" placeholder={translations.form.namePlaceholder} value={formData.name} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" required />
+                            <input id="name" type="text" name="name" placeholder={translations.form.namePlaceholder} value={formData.name} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" required disabled={isSubmitting} />
                         </div>
                         <div>
                             <label htmlFor="companyName" className="block text-sm font-medium text-brand-gray mb-1">{translations.form.companyNameLabel}</label>
-                            <input id="companyName" type="text" name="companyName" placeholder={translations.form.companyNamePlaceholder} value={formData.companyName} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" />
+                            <input id="companyName" type="text" name="companyName" placeholder={translations.form.companyNamePlaceholder} value={formData.companyName} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" disabled={isSubmitting} />
                         </div>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-brand-gray mb-1">{translations.form.emailLabel}</label>
-                            <input id="email" type="email" name="email" placeholder={translations.form.emailPlaceholder} value={formData.email} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" required />
+                            <input id="email" type="email" name="email" placeholder={translations.form.emailPlaceholder} value={formData.email} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" required disabled={isSubmitting} />
                         </div>
                         <div>
                             <label htmlFor="phone" className="block text-sm font-medium text-brand-gray mb-1">{translations.form.phoneLabel}</label>
-                            <input id="phone" type="tel" name="phone" placeholder={translations.form.phonePlaceholder} value={formData.phone} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" />
+                            <input id="phone" type="tel" name="phone" placeholder={translations.form.phonePlaceholder} value={formData.phone} onChange={handleChange} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" disabled={isSubmitting} />
                         </div>
                     </div>
 
@@ -221,13 +272,25 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ translations, onClose }) => {
                      {/* Project Description - Full Width */}
                     <div className="md:col-span-2">
                         <label htmlFor="project" className="block text-sm font-medium text-brand-gray mb-1">{translations.form.projectLabel}</label>
-                        <textarea id="project" name="project" placeholder={translations.form.projectPlaceholder} value={formData.project} onChange={handleChange} rows={4} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" required></textarea>
+                        <textarea id="project" name="project" placeholder={translations.form.projectPlaceholder} value={formData.project} onChange={handleChange} rows={4} className="w-full p-3 bg-brand-dark/50 border border-brand-border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-accent" required disabled={isSubmitting}></textarea>
                     </div>
 
                   </div>
                   <div className="mt-8 text-center">
-                    <button type="submit" className="w-full md:w-auto bg-brand-accent text-brand-dark font-bold py-3 px-12 rounded-md hover:opacity-90 transition-opacity duration-300">
-                        {translations.form.cta}
+                    <button 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className={`w-full md:w-auto bg-brand-accent text-brand-dark font-bold py-3 px-12 rounded-md transition-all duration-300 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:opacity-90 hover:scale-105'}`}
+                    >
+                        {isSubmitting ? (
+                            <span className="flex items-center justify-center gap-2">
+                                <svg className="animate-spin h-5 w-5 text-brand-dark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                ...
+                            </span>
+                        ) : translations.form.cta}
                     </button>
                   </div>
                 </form>

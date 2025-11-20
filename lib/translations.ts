@@ -3,9 +3,9 @@ export type Language = 'fr' | 'en' | 'ar';
 const textContent = {
   header: {
     links: {
-      fr: ['Accueil', 'Services', 'Portfolio', 'Contact'],
-      en: ['Home', 'Services', 'Portfolio', 'Contact'],
-      ar: ['الرئيسية', 'خدماتنا', 'أعمالنا', 'اتصل بنا'],
+      fr: ['Accueil', 'Services', 'Processus', 'Portfolio', 'Contact'],
+      en: ['Home', 'Services', 'Process', 'Portfolio', 'Contact'],
+      ar: ['الرئيسية', 'خدماتنا', 'عمليتنا', 'أعمالنا', 'اتصل بنا'],
     },
     cta: {
       fr: 'Devis Gratuit',
@@ -93,6 +93,38 @@ const textContent = {
         { title: 'مواقع التجارة الإلكترونية', description: 'مواقع تجارة إلكترونية عصرية، متجاوبة، وعالية الأداء.' },
       ],
     },
+  },
+  process: {
+    title: {
+      fr: 'Notre Processus en 4 Étapes',
+      en: 'Our 4-Step Process',
+      ar: 'عمليتنا في 4 خطوات',
+    },
+    subtitle: {
+      fr: 'Un parcours transparent et efficace, de la stratégie aux résultats.',
+      en: 'A transparent and effective journey, from strategy to results.',
+      ar: 'رحلة شفافة وفعالة، من الاستراتيجية إلى النتائج.',
+    },
+    steps: {
+      fr: [
+        { step: '01', title: 'Découverte & Stratégie', description: 'Nous plongeons dans votre univers pour comprendre vos objectifs, votre audience et votre marché afin de construire une stratégie sur-mesure.' },
+        { step: '02', title: 'Création & Implémentation', description: 'Nos experts créatifs et techniques donnent vie à la stratégie à travers des contenus percutants et des campagnes ciblées.' },
+        { step: '03', title: 'Lancement & Promotion', description: 'Nous déployons les campagnes sur les canaux les plus pertinents pour atteindre votre audience et générer un engagement maximal.' },
+        { step: '04', title: 'Analyse & Optimisation', description: 'Nous suivons les performances en temps réel, analysons les données et optimisons continuellement pour garantir le meilleur ROI.' },
+      ],
+      en: [
+        { step: '01', title: 'Discovery & Strategy', description: 'We dive into your world to understand your goals, audience, and market to build a tailor-made strategy.' },
+        { step: '02', title: 'Creation & Implementation', description: 'Our creative and technical experts bring the strategy to life through impactful content and targeted campaigns.' },
+        { step: '03', title: 'Launch & Promotion', description: 'We deploy campaigns on the most relevant channels to reach your audience and generate maximum engagement.' },
+        { step: '04', title: 'Analysis & Optimization', description: 'We track performance in real-time, analyze data, and continuously optimize to ensure the best ROI.' },
+      ],
+      ar: [
+        { step: '01', title: 'الاكتشاف والاستراتيجية', description: 'نتعمق في عالمك لفهم أهدافك وجمهورك وسوقك لبناء استراتيجية مخصصة.' },
+        { step: '02', title: 'الإنشاء والتنفيذ', description: 'يقوم خبراؤنا المبدعون والتقنيون بإحياء الاستراتيجية من خلال محتوى مؤثر وحملات مستهدفة.' },
+        { step: '03', title: 'الإطلاق والترويج', description: 'ننشر الحملات على القنوات الأكثر صلة للوصول إلى جمهورك وتوليد أقصى قدر من المشاركة.' },
+        { step: '04', title: 'التحليل والتحسين', description: 'نتتبع الأداء في الوقت الفعلي، ونحلل البيانات، ونحسن باستمرار لضمان أفضل عائد على الاستثمار.' },
+      ]
+    }
   },
   portfolio: {
     title: {
@@ -418,6 +450,11 @@ const processTranslations = (lang: Language) => ({
         title: textContent.services.title[lang],
         subtitle: textContent.services.subtitle[lang],
         items: textContent.services.items[lang],
+    },
+    process: {
+      title: textContent.process.title[lang],
+      subtitle: textContent.process.subtitle[lang],
+      steps: textContent.process.steps[lang],
     },
     portfolio: {
         title: textContent.portfolio.title[lang],

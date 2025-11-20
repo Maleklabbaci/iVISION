@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 const Logo: React.FC = () => (
-  <a href="#home" className="text-2xl md:text-3xl font-bold text-brand-light tracking-tight">
+  <a href="#accueil" aria-label="iVISION Home" className="text-2xl font-bold tracking-tight text-brand-light">
     i<span className="text-brand-accent">V</span>ISION
   </a>
 );
+
 
 interface NavLinksProps {
   className?: string;
@@ -13,7 +14,7 @@ interface NavLinksProps {
 }
 
 const NavLinks: React.FC<NavLinksProps> = ({ className, onItemClick, links }) => {
-  const staticLinks = ['accueil', 'services', 'portfolio', 'contact'];
+  const staticLinks = ['accueil', 'services', 'process', 'portfolio', 'contact'];
   return (
     <nav className={className}>
       {links.map((link, index) => (
@@ -56,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ translations, onQuoteClick }) => {
         <Logo />
         <div className="hidden md:flex items-center space-x-6">
           <NavLinks className="flex space-x-2" links={translations.links} />
-          <button onClick={onQuoteClick} className="bg-brand-accent text-brand-dark font-semibold py-2 px-6 rounded-md hover:opacity-90 transition-opacity duration-300">
+          <button onClick={onQuoteClick} className="bg-brand-accent text-brand-dark font-semibold py-2 px-6 rounded-md hover:opacity-90 transition-all duration-300 transform hover:scale-105">
             {translations.cta}
           </button>
         </div>

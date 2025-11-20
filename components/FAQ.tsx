@@ -35,7 +35,7 @@ const FAQItem: React.FC<{ qa: QA; isOpen: boolean; onClick: () => void }> = ({ q
         className="overflow-hidden transition-all duration-500 ease-in-out"
         style={{ maxHeight: isOpen ? `${contentRef.current?.scrollHeight}px` : '0px' }}
       >
-        <div className="pb-6 text-brand-gray">
+        <div className={`pb-6 text-brand-gray transition-opacity duration-500 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
           <p>{qa.answer}</p>
         </div>
       </div>

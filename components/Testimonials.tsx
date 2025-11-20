@@ -80,7 +80,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ translations }) => {
                 key={index}
                 className={`[grid-area:1/1] transition-opacity duration-700 ease-in-out flex flex-col justify-center items-center ${currentIndex === index ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
               >
-                <img src={testimonial.avatar} alt={testimonial.author} className="w-20 h-20 rounded-full mb-4 border-2 border-brand-accent" />
+                <img src={testimonial.avatar} alt={testimonial.author} className="w-20 h-20 rounded-full mb-4 border-2 border-brand-accent" loading="lazy" />
                 <blockquote className="text-lg md:text-xl italic text-brand-light mb-6 max-w-2xl">
                   "{testimonial.quote}"
                 </blockquote>

@@ -30,7 +30,7 @@ interface ServiceCardProps {
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ service, isVisible, index }) => (
     <div 
-        className={`group bg-brand-dark/50 border border-brand-border p-8 rounded-lg transition-all duration-300 hover:border-brand-accent hover:-translate-y-2 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+        className={`group bg-brand-dark/50 border border-brand-border p-8 rounded-lg transition-all duration-300 hover:border-brand-accent hover:-translate-y-2 hover:bg-brand-dark/60 hover:shadow-lg hover:shadow-brand-accent/10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
         style={{ animationDelay: `${index * 150}ms` }}
     >
         <div className="text-brand-accent mb-4 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.7)]">

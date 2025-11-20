@@ -13,6 +13,8 @@ import LanguageSelector from './components/LanguageSelector';
 import { translations, Language } from './lib/translations';
 import QuoteForm from './components/QuoteForm';
 import SplashScreen from './components/SplashScreen';
+import ScrollToTopButton from './components/ScrollToTopButton';
+import Process from './components/Process';
 
 const StaticBackground: React.FC = () => (
   <div className="fixed top-0 left-0 w-full h-full z-[-1] bg-brand-dark">
@@ -83,12 +85,14 @@ const App: React.FC = () => {
             <Hero translations={t.hero} onQuoteClick={handleOpenQuoteForm} />
             <ClientLogos translations={t.clientLogos} />
             <Services translations={t.services} />
+            <Process translations={t.process} />
             <Portfolio translations={t.portfolio} onQuoteClick={handleOpenQuoteForm} />
             <Testimonials translations={t.testimonials} />
             <FAQ translations={t.faq} />
             <Contact translations={t.contact} />
           </main>
           <LiveChat translations={t.liveChat} />
+          <ScrollToTopButton />
           <Footer translations={t.footer} />
         </div>
       )}
