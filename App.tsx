@@ -60,14 +60,12 @@ const App: React.FC = () => {
   
   const t = language ? translations[language] : null;
 
-  if (isLoading) {
-    return <SplashScreen />;
-  }
-
   return (
     <div className="min-h-screen relative">
       <StaticBackground />
       
+      {isLoading && <SplashScreen />}
+
       {showLangSelector && (
         <div 
           key="lang-selector" 
